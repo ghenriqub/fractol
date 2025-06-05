@@ -6,7 +6,7 @@
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:15:42 by ghenriqu          #+#    #+#             */
-/*   Updated: 2025/06/03 14:28:59 by ghenriqu         ###   ########.fr       */
+/*   Updated: 2025/06/05 13:36:27 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ static void	ft_putstr_fd(const char *s, int fd)
 	while (s[i])
 		i++;
 	write (fd, s, i);
+}
+
+static int	ft_isdigit(char s)
+{
+	if (s >= '0' && s <= '9')
+		return (1);
+	else
+	{
+		exit(EXIT_FAILURE);
+		return (0);
+	}
 }
 
 static double	ft_atodbl(char *s)
@@ -40,7 +51,7 @@ static double	ft_atodbl(char *s)
 	while ('+' == *s || '-' == *s)
 		if ('-' == *s++)
 			sign = -sign;
-	while (*s != '.' && *s)
+	while (*s != '.' && *s && ft_isdigit(*s))
 		integer_part = (integer_part * 10) + (*s++ - 48);
 	if ('.' == *s)
 		++s;
@@ -50,16 +61,6 @@ static double	ft_atodbl(char *s)
 		fractional_part += (*s++ - 48) * pow;
 	}
 	return ((integer_part + fractional_part) * sign);
-}
-
-static void	ft_print_usage(void)
-{
-	const char	*error_message;
-
-	error_message = "Please enter one of the above:\n" \
-					"\t\"./fractol mandelbrot\"\n" \
-					"\t\"./fractol julia <value_1> <value_2>\"\n";
-	ft_putstr_fd(error_message, STDERR_FILENO);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
@@ -99,7 +100,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_print_usage();
+		ft_print_wrong();
 		exit(EXIT_FAILURE);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 13:40:54 by ghenriqu          #+#    #+#              #
-#    Updated: 2025/06/03 14:46:45 by ghenriqu         ###   ########.fr        #
+#    Updated: 2025/06/04 14:27:11 by ghenriqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ MLX_FLAGS	= -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 SRC = 	0-main.c \
 		1-init.c \
 		2-render.c \
-		hooks_events.c \
-		math_utils.c
+		3-math_utils.c \
+		4-hooks_events.c
 
 OBJ = $(SRC:.c=.o)
 

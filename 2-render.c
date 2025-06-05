@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   2-render.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:47:37 by ghenriqu          #+#    #+#             */
-/*   Updated: 2025/05/18 10:56:11 by ghenriqu         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:55:31 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,20 @@ static void	ft_mandel_vs_julia(t_complex *z, t_complex *c, t_fractol *fractol)
 	}
 }
 
-static void	ft_put_pixel(int x, int y, t_img *img, int colour)
+static void	ft_put_pixel(int x, int y, t_img *img, double colour)
 {
 	int	offset;
 
 	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(unsigned int *)(img->pixels_ptr + offset) = colour;
+}
+
+static double	ft_map(double num, double n_min, double n_max, double o_max)
+{
+	double	result;
+
+	result = ((n_max - n_min) * (num / o_max)) + n_min;
+	return (result);
 }
 
 static void	ft_handle_pixel(int x, int y, t_fractol *fractol)
@@ -50,13 +58,13 @@ static void	ft_handle_pixel(int x, int y, t_fractol *fractol)
 		z = ft_sum_complex(ft_square_complex(z), c);
 		if (((z.x * z.x) + (z.y * z.y)) > fractol->escape_value)
 		{
-			colour = ft_map(i, BLACK, BLUE, fractol->iterations);
+			colour = ft_map(i, BACKGROUND, MARGIN, fractol->iterations);
 			ft_put_pixel(x, y, &fractol->img, colour);
 			return ;
 		}
 		++i;
 	}
-	ft_put_pixel(x, y, &fractol->img, WHITE);
+	ft_put_pixel(x, y, &fractol->img, POINT);
 }
 
 void	ft_fractol_render(t_fractol *fractol)
@@ -64,12 +72,16 @@ void	ft_fractol_render(t_fractol *fractol)
 	int	x;
 	int	y;
 
-	y = -1;
-	while (++y < HEIGHT)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		x = -1;
-		while (++x < WIDTH)
+		x = 0;
+		while (x < WIDTH)
+		{
 			ft_handle_pixel(x, y, fractol);
+			x++;
+		}
+		y++;
 	}
 	mlx_put_image_to_window (fractol->mlx_connection, fractol->mlx_window, \
 							fractol->img.img_ptr, 0, 0);
