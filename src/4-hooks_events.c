@@ -6,21 +6,11 @@
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 19:10:53 by ghenriqu          #+#    #+#             */
-/*   Updated: 2025/06/05 13:36:40 by ghenriqu         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:07:53 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_print_wrong(void)
-{
-	const char	*error_message;
-
-	error_message = "Please enter one of the above:\n" \
-					"\t\"./fractol mandelbrot\"\n" \
-					"\t\"./fractol julia <value_1> <value_2>\"\n";
-	ft_putstr_fd(error_message, STDERR_FILENO);
-}
 
 int	ft_close_handle(t_fractol *fractol)
 {

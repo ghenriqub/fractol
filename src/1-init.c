@@ -6,7 +6,7 @@
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:21:51 by ghenriqu          #+#    #+#             */
-/*   Updated: 2025/06/04 17:43:58 by ghenriqu         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:45:13 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_malloc_error(void)
 
 void	ft_data_init(t_fractol *fractol)
 {
-	fractol->escape_value = 4;
+	fractol->escape_value = 10;
 	fractol->iterations = ITERATIONS;
 	fractol->shift_x = 0.0;
 	fractol->shift_y = 0.0;

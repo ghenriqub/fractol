@@ -6,7 +6,7 @@
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:25:16 by ghenriqu          #+#    #+#             */
-/*   Updated: 2025/06/05 13:38:15 by ghenriqu         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:18:56 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ t_complex	ft_square_complex(t_complex z);
 void		ft_fractol_init(t_fractol *fractol);
 void		ft_data_init(t_fractol *fractol);
 void		ft_events_init(t_fractol *fractol);
+int			ft_julia_track(int x, int y, t_fractol *fractol);
 
-void		ft_print_wrong(void);
 int			ft_key_handle(int keysym, t_fractol *fractol);
 int			ft_close_handle(t_fractol *fractol);
 int			ft_mouse_handle(int button, int x, int y, t_fractol *fractol);
